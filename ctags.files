@@ -2266,3 +2266,4 @@ mk_mvc.mak
 README.md
 source.mak
 parsers/vala.c
+parsers/scala.c

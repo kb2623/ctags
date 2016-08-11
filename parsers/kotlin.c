@@ -4,7 +4,6 @@
 #include "general.h"
 
 #include "entry.h"
-#include "keyword.h"
 #include "parse.h"
 #include "read.h"
 #include "types.h"
@@ -283,8 +282,12 @@ static char * SimpleName(void) {
 	return NULL;
 }
 
-// Main functions
+// MAIN FUNCTIONS
 
+/**
+ * @brief initialize
+ * @param language
+ */
 static void initialize(const langType language) {
 	Lang_kotlin = language;
 }
@@ -1508,8 +1511,8 @@ extern parserDefinition * KotlinFileParser(void) {
  * @brief KotlinScriptParser
  * @return Parser for creating tags found in Kotlin scripts
  */
-extern parserDefinition * KotlinScriptParser (void) {
-	static const char * const extensions [] = {"kts", NULL};
+extern parserDefinition * KotlinScriptParser(void) {
+	static const char * const extensions[] = {"kts", NULL};
 	parserDefinition * def = parserNew("Kotlin");
 	def->initialize = initialize;
 	def->extensions = extensions;
