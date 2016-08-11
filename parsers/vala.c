@@ -228,10 +228,357 @@ static void initialize(const langType language) {
 }
 
 /**
- * @brief findTagsVala
+ * @brief findTagsVala ::= using_directive* namespace_member*
  */
 static void findTagsVala(void) {
 
+}
+
+// PARSING FUNCTIONS
+
+/**
+ * @brief using_directive ::= "using" symbol [ "," symbol ]* ";"
+ */
+static void using_directive(void) {
+	//TODO
+}
+
+/**
+ * @brief symbol ::= symbol_part [ "." symbol_part ]*
+ */
+static void symbol(void) {
+	//TODO
+}
+
+/**
+ * @brief symbol_part ::= ( "global::" identifier ) | identifier
+ */
+static void symbol_part(void) {
+	//TODO
+}
+
+/**
+ * @brief namespace_member ::= [ attributes ]
+ *                      ( namespace_declaration |
+ *                        class_declaration |
+ *                        interface_declaration |
+ *                        struct_declaration |
+ *                        enum_declaration |
+ *                        errordomain_declaration |
+ *                        method_declaration |
+ *                        field_declaration |
+ *                        constant_declaration )
+ */
+static void namespace_member(void) {
+	//TODO
+}
+
+/**
+ * @brief attributes ::= attribute*
+ */
+static void attributes(void) {
+	//TODO
+}
+
+/**
+ * @brief attribute ::= "[" identifier [ attribute_arguments ] "]"
+ */
+static void attribute(void) {
+	//TODO
+}
+
+/**
+ * @brief attribute_arguments ::= "(" attribute_argument [ "," attribute_argument ]* ")"
+ */
+static void attribute_arguments(void) {
+	//TODO
+}
+
+/**
+ * @brief attribute_argument ::= identifier "=" expression
+ */
+static void attribute_argument(void) {
+	//TODO
+}
+
+/**
+ * @brief expression lambda_expression | ( conditional_expression [ assignment_operator expression ] )
+ */
+static void expression(void) {
+	//TODO
+}
+
+/**
+ * @brief assignment_operator ::= "=" | "+=" | "-=" | "|=" | "&=" | "^=" | "/=" | "*=" | "%=" | "<<=" | ">>="
+ */
+static void assignment_operator(void) {
+	//TODO
+}
+
+/**
+ * @brief conditional_expression ::= coalescing_expression [ "?" expression ":" expression ]
+ */
+static void conditional_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief coalescing_expression ::= conditional_or_expression [ "??" coalescing_expression ]
+ */
+static void coalescing_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief conditional_or_expression conditional_and_expression [ "||" conditional_and_expression ]
+ */
+static void conditional_or_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief conditional_and_expression ::= in_expression [ "&&" in_expression ]
+ */
+static void conditional_and_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief in_expression ::= inclusive_or_expression [ "in" inclusive_or_expression ]
+ */
+static void in_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief inclusive_or_expression ::= exclusive_or_expression [ "|" exclusive_or_expression ]
+ */
+static void inclusive_or_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief exclusive_or_expression ::= and_expression [ "^" and_expression ]
+ */
+static void exclusive_or_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief and_expression ::= equality_expression [ "&" equality_expression ]
+ */
+static void and_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief equality_expression ::= relational_expression [ ( "==" | "!=" ) relational_expression ]*
+ */
+static void equality_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief relational_expression ::= shift_expression [ ( "<" | "<=" | ">" | ">=" ) shift_expression ) | ( "is" type ) | ( "as" type ) ]*
+ */
+static void relational_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief type ::= ( "void" [ "*" ]* ) | ( [ "dynamic" ] [ "unowned" ] symbol [ type_arguments ] [ "*" ]* [ "?" ] array_type* )
+ */
+static void type(void) {
+	//TODO
+}
+
+/**
+ * @brief type_weak ::= ( "void" [ "*" ]* ) | ( [ "dynamic" ] [ "unowned" | "weak" ] symbol [ type_arguments ] [ "*" ]* [ "?" ] array_type* )
+ */
+static void type_weak(void) {
+	//TODO
+}
+
+/**
+ * @brief array_type ::= "[" array_size "]" [ "?" ]
+ */
+static void array_type(void) {
+	//TODO
+}
+
+/**
+ * @brief shift_expression ::= additive_expression [ ( "<<" | ">>" ) additive_expression ]*
+ */
+static void shift_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief additive_expression multiplicative_expression [ ( "+" | "-" ) multiplicative_expression ]*
+ */
+static void additive_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief multiplicative_expression unary_expression [ ( "*" | "/" | "%" ) unary_expression ]*
+ */
+static void multiplicative_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief unary_expression ( unary_operator unary_expression ) | ( "(" ( "owned" | "void" | "dynamic" | "!" | type ) ")" unary_expression ) | primary_expression
+ */
+static void unary_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief unary_operator ::= "+" | "-" | "!" | "~" | "++" | "--" | "*" | "&" | "(owned)" | "(void)" | "(dynamic)" | "(!)"
+ */
+static void unary_operator(void) {
+	//TODO
+}
+
+/**
+ * @brief primary_expression ::= ( literal | initializer | tuple | template | open_regex_literal | this_access | base_access | object_or_array_creation_expression | yield_expression | sizeof_expression | typeof_expression | simple_name ) [ member_access | pointer_member_access | method_call | element_access | post_increment_expression | post_decrement_expression ]*
+ */
+static void primary_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief literal ::= "true" | "false" | "null" | integer_literal | real_literal | character_literal | regex_literal | string_literal | template_string_literal | verbatim_string_literal
+ */
+static void literal(void) {
+	//TODO
+}
+
+/**
+ * @brief initializer ::= "{" argument [ "," argument ]* "}"
+ */
+static void initializer(void) {
+	//TODO
+}
+
+/**
+ * @brief arguments ::= argument [ "," argument ]*
+ */
+static void arguments(void) {
+	//TODO
+}
+
+/**
+ * @brief argument ::= "ref" expression | "out" expression | expression | identifier [ ":" expression ]
+ */
+static void argument(void) {
+	//TODO
+}
+
+/**
+ * @brief tuple ::= "(" expression [ "," expression ]* ")"
+ */
+static void tuple(void) {
+	//TODO
+}
+
+/**
+ * @brief _template ::= '@"' [ expression "," ]* '"'
+ */
+static void _template(void) {
+	//TODO
+}
+
+/**
+ * @brief open_regex_literal ::= "/" literal
+ */
+static void open_regex_literal(void) {
+	//TODO
+}
+
+/**
+ * @brief this_access ::= "this"
+ */
+static void this_access(void) {
+	//TODO
+}
+
+/**
+ * @brief base_access ::= "base"
+ */
+static void base_access(void) {
+	//TODO
+}
+
+/**
+ * @brief object_or_array_creation_expression := "new" member ( object_creation_expression | array_creation_expression )
+ */
+static void object_or_array_creation_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief object_creation_expression ::= "(" [ arguments ] ")" [ object_initializer ]
+ */
+static void object_creation_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief object_initializer ::= "{" member_initializer [ "," member_initializer ] "}"
+ */
+static void object_initializer(void) {
+	//TODO
+}
+
+/**
+ * @brief member_initializer ::= identifier "=" expression
+ */
+static void member_initializer(void) {
+	//TODO
+}
+
+/**
+ * @brief array_creation_expression ::= [ "[" "]" ]* [ "[" [ array_size ] "]" ] [ initializer ]
+ */
+static void array_creation_expression(void) {
+	//TODO
+}
+
+/**
+ * @brief array_size ::= expression [ "," expression ]*
+ */
+static void array_size(void) {
+	//TODO
+}
+
+/**
+ * @brief member ::= member_part [ "." member_part ]*
+ */
+static void member(void) {
+	//TODO
+}
+
+/**
+ * @brief member_part ::= ( "global::" identifier || identifier ) [ type_arguments ]
+ */
+static void member_part(void) {
+	//TODO
+}
+
+/**
+ * @brief type_arguments ::= "<" type [ "," type ]* ">"
+ */
+static void type_arguments(void) {
+	//TODO
+}
+
+/**
+ * @brief yield_expression ::= "yield" [ base_access "." ] member method_call
+ */
+static void yield_expression(void) {
+	//TODO
 }
 
 // PARSER CREATION
