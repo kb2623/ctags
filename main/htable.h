@@ -25,6 +25,12 @@ boolean hashPtreq (void *a, void *b);
 unsigned int hashCstrhash (void * x);
 boolean hashCstreq (void *a, void *b);
 
+unsigned int hashCstrhash (void * x);
+boolean hashCstreq (void *a, void *b);
+
+unsigned int hashInthash (void *x);
+boolean hashInteq (void *a, void *b);
+
 extern hashTable* hashTableNew         (unsigned int size,
 					hashTableHashFunc hashfn,
 					hashTableEqualFunc equalfn,
@@ -39,5 +45,3 @@ extern void       hashTableForeachItem (hashTable *htable, hashTableForeachFunc 
 extern int        hashTableCountItem   (hashTable *htable);
 
 #endif	/* CTAGS_MAIN_HTABLE_H */
-
-/* vi:set tabstop=4 shiftwidth=4: */
