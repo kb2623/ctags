@@ -151,6 +151,7 @@ PARSER_SRCS =				\
 	parsers/iniconf.c		\
 	parsers/jprop.c			\
 	parsers/jscript.c		\
+	parsers/kotlin.c		\
 	parsers/json.c			\
 	parsers/lisp.c			\
 	parsers/lua.c			\
@@ -173,6 +174,7 @@ PARSER_SRCS =				\
 	parsers/rst.c			\
 	parsers/ruby.c			\
 	parsers/rust.c			\
+	parsers/scala.c		\
 	parsers/scheme.c		\
 	parsers/sh.c			\
 	parsers/slang.c			\
@@ -182,6 +184,7 @@ PARSER_SRCS =				\
 	parsers/tcl.c			\
 	parsers/tex.c			\
 	parsers/ttcn.c			\
+	parsers/vala.c			\
 	parsers/verilog.c		\
 	parsers/vhdl.c			\
 	parsers/vim.c			\
