@@ -7,6 +7,7 @@
 #include "parse.h"
 #include "read.h"
 #include "types.h"
+#include "nestlevel.h"
 
 #include "vstring.h"
 #include "routines.h"
@@ -98,11 +99,13 @@ typedef enum eTokenType {
 
 // DATA DEFINITIONS
 static int Lang_kotlin;
+static NestingLevels * nesting = NULL;
 
 typedef enum {
 	K_package,
 	K_annotation,
 	K_class,
+	K_object,
 	K_interface,
 	K_enum,
 	K_constructors,
@@ -114,6 +117,7 @@ static kindOption KotlinKinds[] = {
 	{ TRUE,		'p',		"package",			"packages"		},
 	{ TRUE,		'a',		"annotation",		"annotations"	},
 	{ TRUE,		'c',		"class",				"classes"		},
+	{ TRUE,		'o',		"object",			"objects"		},
 	{ TRUE,		'i',		"interface",		"interfaces"	},
 	{ TRUE,		'e',		"enum",				"enums"			},
 	{ TRUE,		'c',		"constructor",		"constructos"	},
@@ -176,6 +180,7 @@ static const keywordTable KotlinKeywordsTable[] = {
 };
 
 // Lexer
+
 /**
  * @brief Digit (used by IntergerLiteral, HexDigit)
  * 	: ["0".."9"]
@@ -290,6 +295,7 @@ static char * SimpleName(void) {
  */
 static void initialize(const langType language) {
 	Lang_kotlin = language;
+	nesting = nestingLevelsNew(0);
 }
 
 /**
@@ -301,8 +307,7 @@ static void initialize(const langType language) {
  */
 static void kotlinFile(void) {
 	preamble();
-	//TODO
-	topLevelObject();//0..N
+	topLevelObject();
 }
 
 /**
