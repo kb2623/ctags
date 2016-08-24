@@ -55,6 +55,7 @@ enum eCharacters {
 
 /* InputFile: reading from fp in inputFile with updating fields in input fields */
 extern unsigned long getInputLineNumber (void);
+extern int getInputLineOffset (void);
 extern const char *getInputFileName (void);
 extern MIOPos getInputFilePosition (void);
 extern MIOPos getInputFilePositionForLine (int line);
@@ -99,7 +100,7 @@ extern const char *getSourceLanguageName (void);
 extern unsigned long getSourceLineNumber (void);
 
 /* Raw: reading from given a parameter, fp */
-extern char *readLineRaw           (vString *const vLine, MIO *const fp);
+extern char *readLineRaw           (vString *const vLine, MIO *const mio);
 extern char* readLineRawWithNoSeek (vString *const vline, FILE *const pp);
 
 /* Bypass: reading from fp in inputFile WITHOUT updating fields in input fields */
