@@ -216,6 +216,9 @@
     <ClCompile Include="..\parsers\systemdunit.c" />
     <ClCompile Include="..\parsers\yumrepo.c" />
     <ClCompile Include="..\parsers\pythonloggingconfig.c" />
+	 <ClCompile Include="..\parsers\kotlin.c" />
+	 <ClCompile Include="..\parsers\scala.c" />
+	 <ClCompile Include="..\parsers\vala.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\fnmatch\fnmatch.h" />

@@ -102,6 +102,9 @@
     <ClCompile Include="..\parsers\json.c">
       <Filter>Source Files\Parsers</Filter>
     </ClCompile>
+	 <ClCompile Include="..\parsers\kotlin.c">
+		 <Filter>Source Files\Parsers</Filter>
+	 </ClCompile>
     <ClCompile Include="..\parsers\lisp.c">
       <Filter>Source Files\Parsers</Filter>
     </ClCompile>
@@ -159,6 +162,9 @@
     <ClCompile Include="..\parsers\rust.c">
       <Filter>Source Files\Parsers</Filter>
     </ClCompile>
+	 <ClCompile Include="..\parsers\scala.c">
+		 <Filter>Source Files\Parsers</Filter>
+	 </ClCompile>
     <ClCompile Include="..\parsers\scheme.c">
       <Filter>Source Files\Parsers</Filter>
     </ClCompile>
@@ -186,6 +192,9 @@
     <ClCompile Include="..\parsers\ttcn.c">
       <Filter>Source Files\Parsers</Filter>
     </ClCompile>
+	 <ClCompile Include="..\parsers\vala.c">
+		 <Filter>Source Files\Parsers</Filter>
+	 </ClCompile>
     <ClCompile Include="..\parsers\verilog.c">
       <Filter>Source Files\Parsers</Filter>
     </ClCompile>
