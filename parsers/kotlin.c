@@ -298,6 +298,10 @@ static char * SimpleName(void) {
 
 // MAIN FUNCTIONS
 
+static void preamble(void);
+static void topLevelObject(void);
+static void expression(void);
+
 /**
  * @brief initialize
  * @param language

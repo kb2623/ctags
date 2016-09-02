@@ -74,7 +74,6 @@ typedef enum eKeywordId {
 	KEYWORD_using,
 	KEYWORD_as,
 	KEYWORD_is,
-	KEYWORD_in,
 	KEYWORD_delete,
 	KEYWORD_sizeof,
 	KEYWORD_typeof,
@@ -86,7 +85,6 @@ typedef enum eKeywordId {
 	KEYWORD_get,
 	KEYWORD_set,
 	KEYWORD_construct,
-	KEYWORD_default,
 	KEYWORD_value,
 	KEYWORD_void,
 	KEYWORD_var,
@@ -293,7 +291,7 @@ static void attributes(void) {
 /**
  * @brief attribute ::= "[" identifier [ attribute_arguments ] "]"
  */
-static void attribute(void) {
+static void attribute_vala(void) {
 	//TODO
 }
 
