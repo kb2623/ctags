@@ -129,7 +129,7 @@ static kindOption PythonKinds[COUNT_KIND] = {
 	{TRUE, 'I', "namespace", "name referring a module defined in other file"},
 	{TRUE, 'i', "module",    "modules",
 	 .referenceOnly = TRUE,  ATTACH_ROLES(PythonModuleRoles)},
-	{TRUE, 'x', "unknown",   "name referring a classe/variable/function/module defined in other module",
+	{TRUE, 'x', "unknown",   "name referring a class/variable/function/module defined in other module",
 	 .referenceOnly = FALSE, ATTACH_ROLES(PythonUnknownRoles)},
 	{FALSE, 'z', "parameter", "function parameters" },
 	{FALSE, 'l', "local",    "local variables" },
@@ -1150,8 +1150,11 @@ static boolean parseVariable (tokenInfo *const token, const pythonKind kind)
 
 		/* if we got leftover to initialize, just make variables out of them.
 		 * This handles cases like `a, b, c = (c, d, e)` -- or worse */
-		while (i < nameCount)
-			makeSimplePythonTag (nameTokens[i++], kind);
+		for (; i < nameCount; i++)
+		{
+			if (nameTokens[i])
+				makeSimplePythonTag (nameTokens[i], kind);
+		}
 	}
 
 	while (nameCount > 0)
