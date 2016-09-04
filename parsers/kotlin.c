@@ -332,8 +332,7 @@ static void kotlinFile(void) {
  */
 static void script(void) {
 	preamble();
-	//TODO
-	expression();//0..N
+	expression();
 }
 
 /* PARSING FUNCTIONS
@@ -359,7 +358,9 @@ static void script(void) {
  * 	;
  */
 static void preamble(void) {
-	//TODO
+	fileAnnotations();
+	packageHeader();
+	import();
 }
 
 /**
@@ -368,7 +369,7 @@ static void preamble(void) {
  * 	;
  */
 static void fileAnnotations(void) {
-	//TODO
+	fileAnnotation();
 }
 
 /**
@@ -377,6 +378,7 @@ static void fileAnnotations(void) {
  * 	;
  */
 static void fileAnnotation(void) {
+	//test for string: @file
 	//TODO
 }
 
@@ -386,7 +388,9 @@ static void fileAnnotation(void) {
  * 	;
  */
 static void packageHeader(void) {
-	//TODO
+	modifiers();
+	//package
+	SimpleName();
 }
 
 /**
@@ -395,6 +399,8 @@ static void packageHeader(void) {
  * 	;
  */
 static void import(void) {
+	//import
+	SimpleName();
 	//TODO
 }
 
@@ -408,7 +414,11 @@ static void import(void) {
  * 	;
  */
 static void topLevelObject(void) {
-	//TODO
+	package();
+	_class();
+	object();
+	function();
+	property();
 }
 
 /**
@@ -420,7 +430,10 @@ static void topLevelObject(void) {
  * 	;
  */
 static void package(void) {
-	//TODO
+	//package
+	SimpleName();
+	//import
+	topLevelObject();
 }
 
 //Classes
@@ -889,6 +902,9 @@ static void dowhile(void) {
  * 	;
  */
 static void expression(void) {
+	disjuction();
+	assignmentOperation();
+	disjuction();
 	//TODO
 }
 
@@ -898,6 +914,7 @@ static void expression(void) {
  * 	;
  */
 static void disjuction(void) {
+	conjuction();
 	//TODO
 }
 
