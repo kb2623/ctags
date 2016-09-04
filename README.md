@@ -41,3 +41,7 @@ in docs/\*.rst. The preformatted version is available on line,
 http://docs.ctags.io/.
 
 Pull-requests are welcome!
+
+## Additional info ##
+
+This repository is a fork of [universal-ctags](https://github.com/universal-ctags/ctags)
