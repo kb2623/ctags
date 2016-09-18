@@ -36,7 +36,9 @@ ctags.1
 ctags.exe
 ctags.ref
 ctags.ref.exe
+ctags.creator
 ctags.creator.user
+ctags.includes
 dctags
 dctags.exe
 depcomp
