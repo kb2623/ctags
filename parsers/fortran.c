@@ -54,7 +54,7 @@ typedef enum eFortranLineType {
 
 /*  Used to specify type of keyword.
  */
-typedef enum eKeywordId {
+enum eKeywordId {
 	KEYWORD_abstract,
 	KEYWORD_allocatable,
 	KEYWORD_assignment,
@@ -140,7 +140,8 @@ typedef enum eKeywordId {
 	KEYWORD_volatile,
 	KEYWORD_where,
 	KEYWORD_while
-} keywordId;
+};
+typedef int keywordId; /* to allow KEYWORD_NONE */
 
 typedef enum eTokenType {
 	TOKEN_UNDEFINED,
@@ -953,7 +954,7 @@ static void checkForLabel (void)
 static void readIdentifier (tokenInfo *const token, const int c)
 {
 	parseIdentifier (token->string, c);
-	token->keyword = analyzeToken (token->string, Lang_fortran);
+	token->keyword = lookupCaseKeyword (vStringValue (token->string), Lang_fortran);
 	if (! isKeyword (token, KEYWORD_NONE))
 		token->type = TOKEN_KEYWORD;
 	else
@@ -962,7 +963,7 @@ static void readIdentifier (tokenInfo *const token, const int c)
 		if (strncmp (vStringValue (token->string), "end", 3) == 0)
 		{
 			vString *const sub = vStringNewInit (vStringValue (token->string) + 3);
-			const keywordId kw = analyzeToken (sub, Lang_fortran);
+			const keywordId kw = lookupCaseKeyword (vStringValue (sub), Lang_fortran);
 			vStringDelete (sub);
 			if (kw != KEYWORD_NONE)
 			{

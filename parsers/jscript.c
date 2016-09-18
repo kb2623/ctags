@@ -51,7 +51,7 @@ static stringList *FunctionNames;
 
 /*	Used to specify type of keyword.
 */
-typedef enum eKeywordId {
+enum eKeywordId {
 	KEYWORD_function,
 	KEYWORD_capital_function,
 	KEYWORD_capital_object,
@@ -72,7 +72,8 @@ typedef enum eKeywordId {
 	KEYWORD_finally,
 	KEYWORD_sap,
 	KEYWORD_return
-} keywordId;
+};
+typedef int keywordId; /* to allow KEYWORD_NONE */
 
 typedef enum eTokenType {
 	TOKEN_UNDEFINED,
@@ -666,7 +667,7 @@ getNextChar:
 					  parseIdentifier (token->string, c);
 					  token->lineNumber = getInputLineNumber ();
 					  token->filePosition = getInputFilePosition ();
-					  token->keyword = analyzeToken (token->string, Lang_js);
+					  token->keyword = lookupKeyword (vStringValue (token->string), Lang_js);
 					  if (isKeyword (token, KEYWORD_NONE))
 						  token->type = TOKEN_IDENTIFIER;
 					  else

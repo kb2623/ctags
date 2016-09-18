@@ -203,16 +203,26 @@ boolean cxxParserExtractVariableDeclarations(CXXTokenChain * pChain,unsigned int
 			{
 				// At a parenthesis chain we need some additional checks.
 				if(
+						// check for function pointers.
+						// Possible cases:
+						//    ret type (*variable)(params)
+						//    ret type (* const (variable[4]))(params)
 						t->pNext &&
 						cxxTokenTypeIs(t->pNext,CXXTokenTypeParenthesisChain) &&
 						cxxParserTokenChainLooksLikeFunctionParameterList(
 								t->pNext->pChain,
 								NULL
 							) &&
-						(pIdentifier = cxxTokenChainLastPossiblyNestedTokenOfType(
+						(pIdentifier = cxxTokenChainFirstPossiblyNestedTokenOfType(
 								t->pChain,
 								CXXTokenTypeIdentifier
-							))
+							)) &&
+						// Discard function declarations with function return types
+						// like void (*A(B))(C);
+						(
+							(!pIdentifier->pNext) ||
+							(!cxxTokenTypeIs(pIdentifier->pNext,CXXTokenTypeParenthesisChain))
+						)
 					)
 				{
 					// A function pointer.
@@ -353,6 +363,12 @@ boolean cxxParserExtractVariableDeclarations(CXXTokenChain * pChain,unsigned int
 		// Skip back to the beginning of the scope, if any
 		while(pTokenBefore->eType == CXXTokenTypeMultipleColons)
 		{
+			if(!cxxParserCurrentLanguageIsCPP())
+			{
+				CXX_DEBUG_LEAVE_TEXT("Syntax error: found multiple colons in C language");
+				return FALSE;
+			}
+
 			pTokenBefore = pTokenBefore->pPrev;
 			if(!pTokenBefore)
 			{
@@ -535,7 +551,7 @@ boolean cxxParserExtractVariableDeclarations(CXXTokenChain * pChain,unsigned int
 			}
 
 			// anything that remains is part of type
-			CXXToken * pTypeToken = cxxTagSetTypeField(cxxTokenChainFirst(pChain),t->pPrev);
+			CXXToken * pTypeToken = cxxTagCheckAndSetTypeField(cxxTokenChainFirst(pChain),t->pPrev);
 
 			tag->isFileScope = bKnRStyleParameters ?
 					TRUE :

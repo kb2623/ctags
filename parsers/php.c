@@ -21,7 +21,7 @@
 #include "debug.h"
 
 
-typedef enum {
+enum {
 	KEYWORD_abstract,
 	KEYWORD_and,
 	KEYWORD_as,
@@ -81,7 +81,8 @@ typedef enum {
 	KEYWORD_while,
 	KEYWORD_xor,
 	KEYWORD_yield
-} keywordId;
+};
+typedef int keywordId; /* to allow KEYWORD_NONE */
 
 typedef enum {
 	ACCESS_UNDEFINED,
@@ -990,7 +991,7 @@ getNextChar:
 			else
 			{
 				parseIdentifier (token->string, c);
-				token->keyword = analyzeToken (token->string, getInputLanguage ());
+				token->keyword = lookupCaseKeyword (vStringValue (token->string), getInputLanguage ());
 				if (token->keyword == KEYWORD_NONE)
 					token->type = TOKEN_IDENTIFIER;
 				else

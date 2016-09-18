@@ -45,7 +45,7 @@ typedef enum eException { ExceptionNone, ExceptionEOF } exception_t;
 /*
  * Used to specify type of keyword.
  */
-typedef enum eKeywordId {
+enum eKeywordId {
 	KEYWORD_part,
 	KEYWORD_chapter,
 	KEYWORD_section,
@@ -55,7 +55,8 @@ typedef enum eKeywordId {
 	KEYWORD_subparagraph,
 	KEYWORD_label,
 	KEYWORD_include
-} keywordId;
+};
+typedef int keywordId; /* to allow KEYWORD_NONE */
 
 typedef enum eTokenType {
 	TOKEN_UNDEFINED,
@@ -87,7 +88,7 @@ typedef struct sTokenInfo {
  *	DATA DEFINITIONS
  */
 
-static langType Lang_js;
+static langType Lang_tex;
 
 static jmp_buf Exception;
 
@@ -332,7 +333,7 @@ getNextChar:
 					  parseIdentifier (token->string, c);
 					  token->lineNumber = getInputLineNumber ();
 					  token->filePosition = getInputFilePosition ();
-					  token->keyword = analyzeToken (token->string, Lang_js);
+					  token->keyword = lookupKeyword (vStringValue (token->string), Lang_tex);
 					  if (isKeyword (token, KEYWORD_NONE))
 						  token->type = TOKEN_IDENTIFIER;
 					  else
@@ -535,7 +536,7 @@ static void parseTexFile (tokenInfo *const token)
 static void initialize (const langType language)
 {
 	Assert (ARRAY_SIZE (TexKinds) == TEXTAG_COUNT);
-	Lang_js = language;
+	Lang_tex = language;
 
 	lastPart    = vStringNew();
 	lastChapter = vStringNew();

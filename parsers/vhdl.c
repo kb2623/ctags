@@ -36,7 +36,7 @@
 /*
  * Used to specify type of keyword.
  */
-typedef enum eKeywordId {
+enum eKeywordId {
 	KEYWORD_ABS,
 	KEYWORD_ACCESS,
 	KEYWORD_AFTER,
@@ -132,7 +132,8 @@ typedef enum eKeywordId {
 	KEYWORD_WITH,
 	KEYWORD_XNOR,
 	KEYWORD_XOR
-} keywordId;
+};
+typedef int keywordId; /* to allow KEYWORD_NONE */
 
 typedef enum eTokenType {
 	TOKEN_NONE,		/* none */
@@ -455,7 +456,7 @@ static void readToken (tokenInfo * const token)
 			parseIdentifier (token->string, c);
 			token->lineNumber = getInputLineNumber ();
 			token->filePosition = getInputFilePosition ();
-			token->keyword = analyzeToken (token->string, Lang_vhdl);
+			token->keyword = lookupCaseKeyword (vStringValue (token->string), Lang_vhdl);
 			if (isKeyword (token, KEYWORD_NONE))
 				token->type = TOKEN_IDENTIFIER;
 			else
