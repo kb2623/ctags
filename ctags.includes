@@ -1,3 +1,4 @@
+.
 dsl
 fnmatch
 gnu_regex
@@ -11,6 +12,7 @@ Units/parser-c.r/bug1764143.h.d
 Units/parser-cxx.r/bug639639.cpp.d
 Units/parser-cxx.r/bug639644.cpp.d
 Units/parser-cxx.r/c-header-as-cpp.d
+Units/parser-cxx.r/cxx-keywords-as-c-identifiers.b
 Units/parser-objectivec.r/objectivec_interface.h.d
 Units/parser-objectivec.r/objectivec_property.h.d
 Units/parser-objectivec.r/objectivec_protocol.h.d
